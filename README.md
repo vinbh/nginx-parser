@@ -42,7 +42,7 @@ sqlite3 shell.
 ## After cloning
 1. chmod +x nginxlogs.csv
 2. pip3 install requirements.txt
-3. ./nginxlogs.csv
+3. ./nginxlogs.py
 
 ```
 ./nglogparser.py
