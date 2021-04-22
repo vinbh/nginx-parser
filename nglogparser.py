@@ -95,13 +95,28 @@ def top_ips():
 
 def main():
 
+    #Check to see if main functions need to be run.
+    if 'access.log.txt' not in os.listdir():
+        print("Running url fetch to get logfile")
+        get_log_file()
+
+    if 'nginxlogs.csv' not in os.listdir():
+        print("Running regex to convert logs to csv")
+        logs_to_csv()
+
+    if 'database.db' not in os.listdir():
+        print("uploading csv to sqlite3")
+        upload_to_sqlite()
+
+
+
     while True:
         os.system('clear')
         print("Main Choice: Choose 1 of 5 choices")
         print("Choose 1 for top requested pages")
         print("Choose 2 for percentage requests status")
         print("Choose 3 for unsuccessful page requests")
-        print("Choose 4 for top 10 hosts with top 5 pages TODO")
+        print("Choose 4 for top 10 hosts with top 5 pages bonus TODO")
         print("Choose 5 to exit")
 
         choice = input ("Please make a choice: ")
@@ -135,44 +150,8 @@ def main():
 
 
 
-    #get_log_file()
-    #logs_to_csv()
-    #upload_to_sqlite()
-    #top_req_pages()
-    #success_and_fails()
-    #top_failed_pages()
-    #top_ips()
-
-
-
-
-
 
 if __name__ == '__main__':
     main()
 
 
-# sqlite commands
-# sqlite3 sqlite3 vbtest2.db
-# sqlite> .mode csv
-#         .import nginx-logs.csv vblogs
-#
-# sqlite> select url, count(*)
-#   ...> from vblogs
-#   ...> GROUP BY url
-#   ...> ORDER BY count(*) DESC
-#   ...> limit 20;
-#'''
-
-#con = sqlite3.connect("nginxlatest.db")
-#cur = con.cursor()
-#cur.execute("DROP TABLE IF EXISTS vblogs;");
-#cur.execute("""
-#    CREATE TABLE "vblogs" (
-#        "ipaddr_1" TEXT
-#        "req_type_1" TEXT
-#        "status_code_1" REAL
-#        "size_1" REAL
-#        "req_url_1" TEXT
-#        "user_agent_1" TEXT
-#    ); """)
