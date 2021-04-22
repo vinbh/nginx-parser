@@ -7,6 +7,38 @@ Then it uses a simple regex to convert that fiel to csv, the csv is then importe
 sqliteDB where queries are run on it programatically using python or using 
 sqlite3 shell.
 
+##Assumptions made
+1. python 3.8 or later is installed
+2. sqlite3 is installed from requirements
+3. There could be issues with sqlite3 on older MACOS versions, works well in Debian9.
+4. This is a small reference for slite3 commands
+```
+# sqlite commands
+# sqlite3 sqlite3 vbtest2.db
+# sqlite> .mode csv
+#         .import nginx-logs.csv nglogs
+#
+# sqlite> select url, count(*)
+#   ...> from vblogs
+#   ...> GROUP BY url
+#   ...> ORDER BY count(*) DESC
+#   ...> limit 20;
+#'''
+
+#con = sqlite3.connect("nginxlatest.db")
+#cur = con.cursor()
+#cur.execute("DROP TABLE IF EXISTS vblogs;");
+#cur.execute("""
+#    CREATE TABLE "vblogs" (
+#        "ipaddr_1" TEXT
+#        "req_type_1" TEXT
+#        "status_code_1" REAL
+#        "size_1" REAL
+#        "req_url_1" TEXT
+#        "user_agent_1" TEXT
+#    ); """)
+```
+
 ## After cloning
 1. chmod +x nginxlogs.csv
 2. pip3 install requirements.txt
